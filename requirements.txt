@@ -1,7 +1,7 @@
-pandas==2.0.3
-streamlit==1.26.0
-st-aggrid==0.3.3
-matplotlib==3.7.2
+pandas==1.5.3
+streamlit==1.38.0
+st-aggrid==31.3.0
+matplotlib==3.7.1
 seaborn==0.12.2
-plotly==5.15.0
-numpy==1.25.2
+plotly==5.9.0
+numpy==1.24.3
