@@ -8,16 +8,13 @@ import pandas as pd
 import streamlit as st
 from io import StringIO
 import time
-from st_aggrid import AgGrid, GridOptionsBuilder
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import numpy as np
 
-
 st.write("""Este painel tem como objetivo dar insights em relação a sazonalidade de visitas ao parque, 
 auxiliando o visitante a escolher o melhor dia para não enfrentar grandes esperas""")
-
 
 @st.cache_data
 def load_data(file):
@@ -129,11 +126,7 @@ else:
 
 st.subheader("Tabela Interativa")
 
-gb = GridOptionsBuilder.from_dataframe(df_filtrado)
-gb.configure_default_column(editable=False, filter=True, sortable=True)
-grid_options = gb.build()
-
-AgGrid(df_filtrado, gridOptions=grid_options, height=400, theme="streamlit")
+st.dataframe(df_filtrado)
 
 csv = df_filtrado.to_csv(index=False)
 st.download_button(
@@ -158,7 +151,6 @@ st.subheader("Visualizações")
 if "Total Visitantes Mensais" in df_filtrado.columns and "Mes" in df_filtrado.columns:
     bar_chart = px.bar(df_filtrado, x="Mes", y="Total Visitantes Mensais", title="Visitantes por Mês")
     st.plotly_chart(bar_chart)
-
 
 total_visitantes_dias_uteis = df["Visitantes Dias uteis"].sum()
 total_fins_semana_feriados = df["Visitantes Fins de semana, feriados e pontos facultativos"].sum()
@@ -197,7 +189,6 @@ colunas_dias_existentes = [col for col in colunas_dias if col in df.columns]
 df["Média Visitantes Diários"] = df[colunas_dias_existentes].mean(axis=1)
 
 df["Mes"] = pd.Categorical(df["Mes"], categories=ordem_meses, ordered=True)
-
 
 media_diaria_por_mes = df.groupby("Mes")["Média Visitantes Diários"].mean().reset_index()
 
