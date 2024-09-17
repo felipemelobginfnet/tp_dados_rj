@@ -7,7 +7,6 @@
 import pandas as pd
 import streamlit as st
 import time
-import matplotlib.pyplot as plt
 import plotly.express as px
 import numpy as np
 
@@ -66,7 +65,7 @@ codigo_css = f"""
         color: {font_color} !important;
     }}
     .css-1v0mbdj a {{
-        color: {font_color} !important;  /* Links */
+        color: {font_color} !important;
     }}
     </style>
 """
@@ -139,8 +138,6 @@ if "Total Visitantes Mensais" in df_filtrado.columns:
     soma_mensal = df_filtrado["Total Visitantes Mensais"].sum()
     st.metric(label="Visitantes no Ano", value=f"{soma_mensal}")
 
-st.subheader("Visualizações")
-
 if "Total Visitantes Mensais" in df_filtrado.columns and "Mes" in df_filtrado.columns:
     bar_chart = px.bar(df_filtrado, x="Mes", y="Total Visitantes Mensais", title="Visitantes por Mês")
     st.plotly_chart(bar_chart)
@@ -186,7 +183,6 @@ df["Mes"] = pd.Categorical(df["Mes"], categories=ordem_meses, ordered=True)
 
 media_diaria_por_mes = df.groupby("Mes")["Média Visitantes Diários"].mean().reset_index()
 
-st.subheader("Gráfico de Barras: Média de Visitantes Diários por Mês")
 bar_chart_media_diaria = px.bar(
      media_diaria_por_mes, 
      x="Mes", 
