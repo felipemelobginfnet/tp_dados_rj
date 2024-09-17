@@ -9,7 +9,6 @@ import streamlit as st
 from io import StringIO
 import time
 import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
 import numpy as np
 
