@@ -211,7 +211,7 @@ st.plotly_chart(bar_chart_media_diaria)
 # In[ ]:
 
 
-get_ipython().system('streamlit run modelo.py')
+# get_ipython().system('streamlit run modelo.py')
 
 
 # In[ ]:
