@@ -210,6 +210,7 @@ bar_chart_media_diaria.update_layout(
 st.plotly_chart(bar_chart_media_diaria)
 
 
+
 # In[ ]:
 
 
